@@ -1,0 +1,1 @@
+export const STORAGE_PRODUCTS_EC = "e-commerce-products-ls";

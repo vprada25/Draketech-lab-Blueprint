@@ -1,8 +1,9 @@
-import { useEffect, useReducer, useState } from 'react'
-import { Spinner } from '@blueprintjs/core'
+import { useEffect, useState } from 'react'
+import { Spinner, Position, Toaster, Intent } from '@blueprintjs/core'
 
 import CardContent from '../Card/CardContent'
 import Header from '../Navbar/Header'
+import { OurToaster } from './components/OurToaster'
 
 import { getData } from '../../service/bikeService'
 
@@ -10,15 +11,29 @@ import style from './Layout.module.scss'
 
 export const Layout = () => {
   const [data, setData] = useState<any[]>([])
+  const [product, setProduct] = useState<any>([])
 
   useEffect(() => {
     getData().then((res) => setData(res))
   }, [getData])
 
+  const addProduct = (car: any) => {
+    const [id, model] = car
+    const arrayProduct = product
+    const quantity = 0
+    arrayProduct.push({ id, model, quantity })
+    setProduct(arrayProduct)
+    OurToaster.show({
+      icon: 'tick',
+      intent: Intent.SUCCESS,
+      message: 'product added to shopping cart',
+    })
+  }
+
   return (
     <div className={style.container}>
       <header className='header'>
-        <Header />
+        <Header product={product} />
       </header>
       <div className={style.main}>
         {data.length == 0 ? (
@@ -31,12 +46,13 @@ export const Layout = () => {
               image={item.imageBicycle}
               model={item.model}
               price={item.price}
+              addToCart={addProduct}
             />
           ))
         )}
       </div>
       <footer className={style.footer}>
-        <p>Footer</p>
+        <p>Aqui Va el Footer </p>
       </footer>
     </div>
   )

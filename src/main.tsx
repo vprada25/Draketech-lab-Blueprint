@@ -6,8 +6,8 @@ import App from './views/App'
 import './sass/_main.scss'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <>
     <App />
-  </React.StrictMode>,
+  </>,
   document.getElementById('root'),
 )
