@@ -20,8 +20,9 @@ export const Layout = () => {
   const addProduct = (car: any) => {
     const [id, model] = car
     const arrayProduct = product
-    const quantity = 0
-    arrayProduct.push({ id, model, quantity })
+
+    arrayProduct.push({ id, model })
+
     setProduct(arrayProduct)
     OurToaster.show({
       icon: 'tick',

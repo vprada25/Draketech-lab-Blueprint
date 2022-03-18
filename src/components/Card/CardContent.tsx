@@ -1,4 +1,4 @@
-import { Button, Card, Elevation, Drawer, Classes } from '@blueprintjs/core'
+import { Button, Card, Elevation, Classes } from '@blueprintjs/core'
 
 import style from './CardContent.module.scss'
 
@@ -11,7 +11,15 @@ const CardContent = ({ id, image, model, price, addToCart }: any) => {
       </h5>
       <p>{model}</p>
       <p>{price}</p>
-      <Button onClick={() => addToCart(productCart)}>Add to Cart</Button>
+      <Button
+        alignText='center'
+        className={Classes.FILL}
+        intent='primary'
+        icon='known-vehicle'
+        onClick={() => addToCart(productCart)}
+      >
+        Add to Cart
+      </Button>
     </Card>
   )
 }
