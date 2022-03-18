@@ -12,6 +12,7 @@ import style from './Layout.module.scss'
 export const Layout = () => {
   const [data, setData] = useState<any[]>([])
   const [product, setProduct] = useState<any>([])
+  const [productDetail, setProductDetail] = useState<any>([])
 
   useEffect(() => {
     getData().then((res) => setData(res))
@@ -20,10 +21,20 @@ export const Layout = () => {
   const addProduct = (car: any) => {
     const [id, model] = car
     const arrayProduct = product
+    const arrayProductDet = productDetail
+    let quantity = 1
+
+    for (let i = 0; i < arrayProduct.length; i++) {
+      if (arrayProduct[i].id === id) {
+        quantity++
+      }
+    }
 
     arrayProduct.push({ id, model })
+    arrayProductDet.push({ id, model, quantity })
 
     setProduct(arrayProduct)
+    setProductDetail(arrayProductDet)
     OurToaster.show({
       icon: 'tick',
       intent: Intent.SUCCESS,
@@ -34,7 +45,7 @@ export const Layout = () => {
   return (
     <div className={style.container}>
       <header className='header'>
-        <Header product={product} />
+        <Header product={product} productDetail={productDetail} />
       </header>
       <div className={style.main}>
         {data.length == 0 ? (

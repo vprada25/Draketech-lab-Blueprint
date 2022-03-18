@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-import { ShoppingItem } from '../Drawer/ShoppingItem'
+import { ShoppingItem } from '../ShoppingItem/ShoppingItem'
 
-const Header = ({ product }: any) => {
+const Header = ({ product, productDetail }: any) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleOpen = () => setIsOpen(true)
@@ -19,6 +19,7 @@ const Header = ({ product }: any) => {
               isOpen={isOpen}
               handleClose={handleClose}
               product={product}
+              productDetail={productDetail}
             />
             <button className='bp3-button bp3-minimal bp3-icon-home'>
               Home

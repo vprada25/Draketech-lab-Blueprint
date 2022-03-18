@@ -6,8 +6,6 @@ export const countDuplicateItems = (array: [], value: any) => {
   return count;
 };
 
-
-
 export const removeDuplicateItems = (array: []) => {
   const setObj = new Set(); // creamos pares de clave y array
   return array.reduce((acc, elemento) => {
